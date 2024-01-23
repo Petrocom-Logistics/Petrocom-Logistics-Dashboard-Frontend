@@ -125,7 +125,7 @@ function List() {
 														<div className="company">
 															<img
 																src={
-																	`https://petrocom.techiesgateway.com` +
+																	`https://dashboard-backend.petrocomlogistics.co.uk` +
 																	item?.photo
 																}
 																className="company-logo"
