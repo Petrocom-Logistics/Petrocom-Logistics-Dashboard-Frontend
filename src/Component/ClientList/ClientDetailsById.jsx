@@ -193,7 +193,7 @@ function ClientDetailsById() {
 											{fetchTrue === true ? (
 												<img
 													src={
-														`https://petrocom.techiesgateway.com/` + fetchImg
+														`https://dashboard-backend.petrocomlogistics.co.uk/` + fetchImg
 													}
 													alt="#"
 													className="preview-img"
