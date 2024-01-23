@@ -415,7 +415,7 @@ console.log(invoice)
 														pod.name
 													) : (
 														<Link
-															to={"https://petrocom.techiesgateway.com" + pod}
+															to={"https://dashboard-backend.petrocomlogistics.co.uk" + pod}
 														>
 															Download
 														</Link>
@@ -498,7 +498,7 @@ console.log(invoice)
 													) : (
 														<Link
 															to={
-																"https://petrocom.techiesgateway.com" + invoice
+																"https://dashboard-backend.petrocomlogistics.co.uk" + invoice
 															}
 														>
 															Download
