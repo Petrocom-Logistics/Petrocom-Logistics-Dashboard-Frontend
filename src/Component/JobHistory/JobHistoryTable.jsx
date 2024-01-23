@@ -82,7 +82,7 @@ function JobList(props) {
 															<Tooltip title="Download POD" arrow>
 																<Link
 																	to={
-																		"https://petrocom.techiesgateway.com" +
+																		"https://dashboard-backend.petrocomlogistics.co.uk" +
 																		item?.pod
 																	}
 																>
@@ -108,7 +108,7 @@ function JobList(props) {
 															<Tooltip title="Download Invoice" arrow>
 																<Link
 																	to={
-																		"https://petrocom.techiesgateway.com" +
+																		"https://dashboard-backend.petrocomlogistics.co.uk" +
 																		item?.invoice
 																	}
 																>
