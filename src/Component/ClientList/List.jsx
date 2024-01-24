@@ -173,9 +173,9 @@ function List() {
 													</td>
 													<td>{item?.phone}</td>
 													<td className="email">
-														{console.log(item)}
+{/* 														{console.log(item)} */}
 														<Tooltip title={item?.sec_email} arrow>
-															{console.log(item?.sec_email)}
+{/* 															{console.log(item?.sec_email)} */}
 															{item?.sec_email == null ||
 															item?.sec_email === "null" ? (
 																<>-</>
