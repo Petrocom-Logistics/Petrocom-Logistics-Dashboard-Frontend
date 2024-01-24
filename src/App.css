@@ -1281,7 +1281,7 @@ select {
 	margin: 0 10px;
 }
 .photo-box {
-	padding: 10px;
+/* 	padding: 10px; */
 	cursor: pointer;
 }
 .photo-box {
@@ -1300,8 +1300,8 @@ select {
 }
 .photo-box .camera-img {
 	position: relative;
-	bottom: -44%;
-	left: 80%;
+	bottom: -42%;
+	left: 70%;
 }
 .upload-logo {
 	color: #0d0d0d;
