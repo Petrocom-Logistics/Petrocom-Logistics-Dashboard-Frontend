@@ -23,14 +23,14 @@ function ClientDetailsById() {
 		setFetchTrue(false);
 
 		if (e.target.files[0] !== undefined) {
-			const MIN_FILE_SIZE = 100;
+			const MIN_FILE_SIZE = 0;
 			const MAX_FILE_SIZE = 1024;
 			const fileSizeInKb = e.target.files[0].size / 1024;
 			if (fileSizeInKb > MAX_FILE_SIZE) {
 				alert("File Size Not More than 1MB");
 				setImg("");
 			} else if (fileSizeInKb < MIN_FILE_SIZE) {
-				alert("File Size not less than 100KB");
+				alert("File Size Not Less than 0KB");
 				setImg("");
 			}
 		} else {
