@@ -12,14 +12,14 @@ function CreateClient() {
 	const photoHandler = (e) => {
 		setImg(e.target.files[0]);
 		if (e.target.files[0] !== undefined) {
-			const MIN_FILE_SIZE = 10;
+			const MIN_FILE_SIZE = 0;
 			const MAX_FILE_SIZE = 1024;
 			const fileSizeInKb = e.target.files[0].size / 1024;
 			if (fileSizeInKb > MAX_FILE_SIZE) {
 				alert("File Size Not More than 1MB");
 				setImg("");
 			} else if (fileSizeInKb < MIN_FILE_SIZE) {
-				alert("File Size not less than 10KB");
+				alert("File Size not less than 0KB");
 				setImg("");
 			}
 		} else {
