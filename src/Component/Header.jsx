@@ -123,7 +123,7 @@ function Header() {
 						<br />
 						{/* <span className="email">{data[data.length - 1]?.email}</span> */}
 						<span className="email">
-							{JSON.parse(localStorage.getItem("client_data"))?.email}
+							{JSON.parse(localStorage.getItem("client_data"))?.email?.slice(0,15) + "..."}
 						</span>
 					</div>
 				</div>
