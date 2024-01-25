@@ -114,7 +114,8 @@ function List() {
 										.filter((item) => {
 											return search.toLowerCase() === ""
 												? item
-												: item?.client_name?.toLowerCase().includes(search);
+												: item?.client_name?.includes(search) ||
+														item?.client_name?.toLowerCase().includes(search);
 										})
 										.toReversed()
 										.map((item, index) => {
