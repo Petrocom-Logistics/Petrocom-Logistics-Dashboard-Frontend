@@ -94,7 +94,7 @@ function Header() {
 					) : (
 						<img
 							src={
-								"https://petrocom.techiesgateway.com" +
+								"http://dashboard-backend.petrocomlogistics.co.uk" +
 								JSON.parse(localStorage.getItem("client_data"))?.client_details
 									?.photo
 							}
