@@ -102,7 +102,8 @@ function ArrivalTime(props) {
 								"00 : 00"
 							) : (
 								<>
-									<span>{data?.eta}</span>,&nbsp;
+									{data?.status === "Scheduled" ? "" : <><span>{data?.eta}</span><span>,</span></>}
+									&nbsp;
 									<span>{data?.date}</span>
 								</>
 							)}
@@ -116,7 +117,8 @@ function ArrivalTime(props) {
 								</>
 							) : (
 								<>
-									{data?.status === "Completed" ? (
+									{data?.status === "Completed" ||
+									data?.status === "Scheduled" ? (
 										<>
 											<span>00 hr</span> : &nbsp;
 											<span>00 min</span> : &nbsp;
@@ -177,6 +179,10 @@ function ArrivalTime(props) {
 						<li>
 							<BsFillSquareFill className="list-icon list-Cancelled" />
 							Cancelled
+						</li>
+						<li>
+							<BsFillSquareFill className="list-icon list-Scheduled" />
+							Scheduled
 						</li>
 					</ul>
 				</div>
