@@ -105,6 +105,7 @@ function JobHistoryTopBar(props) {
 								Completed
 							</li>
 							<li onClick={(e) => filterHandler(e)}>Cancelled</li>
+							<li onClick={(e) => filterHandler(e)}>Scheduled </li>
 							<li onClick={(e) => filterHandler(e)} style={{}}>
 								paid
 							</li>
