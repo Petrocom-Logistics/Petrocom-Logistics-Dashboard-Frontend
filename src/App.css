@@ -670,8 +670,10 @@ border-radius: 5px;
 .Arrivalbox .bottom ul {
 	padding-left: 0;
 	display: flex;
-	gap: 20px;
-	justify-content: center;
+	gap: 5px;
+	flex-wrap: wrap;
+	font-size: 13px;
+	justify-content: space-between;
 }
 .Arrivalbox .bottom ul li {
 	display: flex;
@@ -696,6 +698,9 @@ border-radius: 5px;
 }
 .Arrivalbox .list-Cancelled {
 	color: #d60c0c;
+}
+.Arrivalbox .list-Scheduled  {
+	color: #9c73ff;
 }
 
 /*JOb List Dashbaord */
@@ -799,6 +804,16 @@ border-radius: 5px;
 	border-radius: 5px;
 	color: #ffffff;
 	background: #447b18;
+	display: inline-block;
+	width: -webkit-fill-available;
+}
+.JobListContainer table .status-c,
+.Scheduled {
+	display: block;
+	padding: 10px 15px;
+	border-radius: 5px;
+	color: #ffffff;
+	background: #784edb;
 	display: inline-block;
 	width: -webkit-fill-available;
 }
