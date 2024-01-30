@@ -266,6 +266,7 @@ function CreateJob() {
 												<option value="In-Progress">In-Progress</option>
 												<option value="Completed">Completed</option>
 												<option value="Cancelled">Cancelled</option>
+												<option value="Scheduled ">Scheduled </option>
 												{/* <option value="completed">Completed</option> */}
 											</select>
 										</div>
