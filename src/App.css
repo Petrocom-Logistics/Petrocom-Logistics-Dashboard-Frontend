@@ -995,7 +995,7 @@ border-radius: 5px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	width: min-content;
+	
 
 	padding: 5px 0 0 15px;
 	/* border-left: 1px dashed black; */
@@ -1010,12 +1010,12 @@ border-radius: 5px;
 	display: flex;
 	align-items: center;
 	color: #e4e4e4;
- width: max-content;
+ 
 	font-family: "Roboto", sans-serif;
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
-	line-height: normal;
+	line-height: 1.3;
 }
 .slide .bottom {
 	display: flex;
