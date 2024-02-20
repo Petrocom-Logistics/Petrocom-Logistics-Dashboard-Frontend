@@ -10,6 +10,8 @@ function Load(props) {
 	const navigate = useNavigate()
 	const [loading, setLoading] = useState(false);
 	const [selectedValue, setSelectedValue] = useState("");
+	const [showDatePicker, setShowDatePicker] = useState(false);
+	const [showTimePicker, setShowTimePicker] = useState(false);
 	const [multidropValue, setMultidropValue] = useState("No");
 	const [inputList, setInputList] = useState([
 		{ from: "", fromnumber: "", to: "", tonumber: "" },
@@ -34,6 +36,18 @@ function Load(props) {
 	const addLocationButton = () => {
 		setInputList([...inputList, { from: "", to: "" }]);
 	};
+	const showDatePickerHandler = () => {
+		setShowDatePicker(true);
+	};
+	const hideDatePickerHandler = () => {
+		setShowDatePicker(false);
+	};
+	const showTimePickerHandler = () => {
+		setShowTimePicker(true);
+	};
+	const hideTimePickerHandler = () => {
+		setShowTimePicker(false);
+	};
 	const submitHandler = (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -48,6 +62,8 @@ function Load(props) {
 					frieght_type: e.target.frieght.value,
 					multidrop: e.target.multidrop.value,
 					job_location_data: JSON.stringify(inputList),
+					pickupDate: e.target.pdate.value,
+					pickupTime: e.target.ptime.value,
 					length: e.target.length.value,
 					breadth: e.target.breadth.value,
 					height: e.target.height.value,
@@ -217,6 +233,43 @@ function Load(props) {
 							</>
 						);
 					})}
+					<div className="row">
+						{showDatePicker ? (
+							<input
+								type="date"
+								name="pdate"
+								onBlur={hideDatePickerHandler}
+								style={{ display: "block" }}
+								required
+							/>
+						) : (
+							<input
+								type="text"
+								name="pdate"
+								onFocus={showDatePickerHandler}
+								placeholder="Pickup Date"
+								required
+							/>
+						)}
+						{showTimePicker ? (
+							<input
+								type="time"
+								name="ptime"
+								onBlur={hideTimePickerHandler}
+								style={{ display: "block" }}
+								required
+							/>
+						) : (
+							<input
+								type="text"
+								name="ptime"
+								onFocus={showTimePickerHandler}
+								placeholder="Pickup Time"
+								required
+							/>
+						)}
+						
+					</div>
 					<div className="row dimension">
 						<input type="text" name="length" id="length" placeholder="Length" />
 						<input
