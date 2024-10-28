@@ -4,9 +4,7 @@ import { HashLoader } from "react-spinners";
 function Loader() {
 	return (
 		<>
-			{/* <section id="loader">
-				<HashLoader color="#ff5f13"  />
-			</section> */}
+		
 
 			<div id="preloader-active">
 				<div class="preloader">

@@ -54,7 +54,6 @@ function JobHistory() {
 	useEffect(() => {
 		fetchJob();
 		if (localStorage.getItem("type") === "3") {
-			// const userId = userData[userData.length - 1]?.client_details?.id;
 			navigate("/jobhistory/" + localStorage.getItem("client_id"));
 		}
 	}, [location.pathname]);

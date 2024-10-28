@@ -6,7 +6,7 @@ const store = configureStore({
   reducer: {
     user: userSlice,
     job: JobSlice,
-    dashboard : DashboardSlice,
-  }
-})
+    dashboard: DashboardSlice,
+  },
+});
 export default store;

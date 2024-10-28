@@ -7,12 +7,12 @@ import Loader from "./Loader";
 import axios from "axios";
 import { useNavigate } from "react-router";
 function Load(props) {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const [selectedValue, setSelectedValue] = useState("");
+	const [multidropValue, setMultidropValue] = useState("No");
 	const [showDatePicker, setShowDatePicker] = useState(false);
 	const [showTimePicker, setShowTimePicker] = useState(false);
-	const [multidropValue, setMultidropValue] = useState("No");
 	const [inputList, setInputList] = useState([
 		{ from: "", fromnumber: "", to: "", tonumber: "" },
 	]);
@@ -28,7 +28,6 @@ function Load(props) {
 		list.splice(index, 1);
 		setInputList(list);
 	};
-
 
 	const multidropHandler = (e) => {
 		setMultidropValue(e.target.value);
@@ -48,10 +47,11 @@ function Load(props) {
 	const hideTimePickerHandler = () => {
 		setShowTimePicker(false);
 	};
+
 	const submitHandler = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		
+
 		axios
 			.post(
 				"/api/mailer/sendLoad",
@@ -75,14 +75,13 @@ function Load(props) {
 						"Content-Type": "application/json",
 					},
 				}
-				
 			)
 			.then((res) => {
-				console.log(res.data)
+				console.log(res.data);
 				setLoading(false);
-				alert(res.data.message)
+				alert(res.data.message);
 				if (res.data.status === 1) {
-					navigate(-1)
+					navigate(-1);
 				}
 			})
 			.catch((error) => {

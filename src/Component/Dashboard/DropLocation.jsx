@@ -4,7 +4,6 @@ import { PiCarProfileFill } from "react-icons/pi";
 import { BsFillClockFill } from "react-icons/bs";
 import DashboardCarousel from "./DashboardCarousel";
 import { useEffect } from "react";
-import SendLoad from "../SendLoad";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -18,10 +17,7 @@ function DropLocation(props) {
 	const [updates, setUpdates] = useState([]);
 	const navigate = useNavigate()
 	const { data } = props;
-	// const [openLoad, setOpenLoad] = useState({ active: false });
-	// const openSendLoad = () => {
-	// 	setOpenLoad({ active: true });
-	// };
+	
 
 	const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 		"& .MuiDialogContent-root": {
@@ -46,11 +42,7 @@ function DropLocation(props) {
 	}, [data]);
 	return (
 		<>
-			{/* {openLoad ? (
-				<SendLoad open={openLoad.active} setOpenLoad={setOpenLoad} />
-			) : (
-				""
-			)} */}
+		
 			<div id="drop-location-container">
 				<h2 style={{ paddingBottom: "10px" }}>{name}</h2>
 				<h3>Pickup Drop Location</h3>
@@ -76,7 +68,6 @@ function DropLocation(props) {
 							<button
 								className="send-load"
 								onClick={() => {
-									// openSendLoad();
 									navigate("/sendload")
 								}}
 							>

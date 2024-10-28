@@ -13,12 +13,7 @@ function LeftBar() {
 	const onCloseModal = () => setOpen(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const toggle = () => {
-		// if (window.innerWidth <= 768) {
-		// 	document.querySelector("#leftBar").style.display = "none";
-		// 	document.querySelector(".page-right").style.marginLeft = "0px";
-		// }
-	};
+	
 
 	return (
 		<>

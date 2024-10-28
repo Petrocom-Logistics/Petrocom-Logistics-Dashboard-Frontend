@@ -8,7 +8,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function Toast(props) {
-
 	const handleClose = (event, reason) => {
 		props.setToast({ active: false, msg: "", type: "" });
 	};

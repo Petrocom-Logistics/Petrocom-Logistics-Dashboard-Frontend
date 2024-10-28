@@ -186,22 +186,6 @@ console.log(invoice)
 									<div className="box">
 										<label htmlFor="date">Date</label>
 										<span className="input-box">
-											{/* <input
-												type="text"
-												name="date"
-												value={date}
-												onChange={(e) => {
-													setDate(e.target.value);
-												}}
-												onFocus={(e) => {
-													e.target.type = "date";
-												}}
-												onBlur={(e) => {
-													e.target.type = "text";
-												}}
-												placeholder="dd/mm/yyyy"
-												disabled={disable}
-											/> */}
 											{showDatePicker ? (
 												<input
 													type="date"
@@ -245,18 +229,6 @@ console.log(invoice)
 												</option>
 												<option value="1">Yes</option>
 												<option value="0">No</option>
-												{/* {console.log(multidropValue)}
-												{ multidropValue == 1 ? (
-													<>
-														<option value="1">Yes</option>
-														<option value="0">No</option>
-													</>
-												) : (
-													<>
-														<option value="0">No</option>
-														<option value="1">Yes</option>
-													</>
-												)} */}
 											</select>
 										</span>
 									</div>
@@ -416,7 +388,10 @@ console.log(invoice)
 														pod.name
 													) : (
 														<Link
-															to={"https://dashboard-backend.petrocomlogistics.co.uk" + pod}
+															to={
+																"https://dashboard-backend.petrocomlogistics.co.uk" +
+																pod
+															}
 														>
 															Download
 														</Link>
@@ -499,7 +474,8 @@ console.log(invoice)
 													) : (
 														<Link
 															to={
-																"https://dashboard-backend.petrocomlogistics.co.uk" + invoice
+																"https://dashboard-backend.petrocomlogistics.co.uk" +
+																invoice
 															}
 														>
 															Download
