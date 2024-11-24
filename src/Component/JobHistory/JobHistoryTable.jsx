@@ -145,9 +145,10 @@ function JobList(props) {
               <th></th>
             )}
             <th>Date</th>
+            <th> Status</th>
             <th>Job Status</th>
             <th>Vehicle</th>
-            <th>View Details</th>
+            <th>View </th>
           </thead>
           <tbody>
             <>
@@ -263,6 +264,7 @@ function JobList(props) {
                           )}
 
                           <td>{item?.created_at.slice(0, 10)}</td>
+                          <td>{item?.invoice_status}</td>
                           <td>
                             <span className={item?.status}>{item?.status}</span>
                           </td>
