@@ -1723,14 +1723,14 @@ select {
   padding: 10px;
   border: 1px solid #a8a6a6;
   flex: 0.6;
-  height: 72px;
+  height: 85px;
 }
 .invoice-meta {
   flex: 0.4;
   padding: 10px;
   border: 1px solid #a8a6a6;
   border-left: none;
-  height: 72px;
+  height: 85px;
 }
 .invoice-items table {
   width: 100%;

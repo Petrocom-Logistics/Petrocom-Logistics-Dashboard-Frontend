@@ -177,10 +177,7 @@ const Invoice = () => {
             <div className="invoice-to">
               <div>
                 <p>Invoice To:</p>
-                <p>
-                  {data?.job?.client?.client_name}{" "}
-                  {data?.job?.client?.company_name} {data?.job?.client?.address}
-                </p>
+                <p>{data?.job?.client?.address}</p>
               </div>
             </div>
             <div className="invoice-meta">
@@ -217,7 +214,7 @@ const Invoice = () => {
                             Pick up from: {ite?.from}
                             <br />
                             <br />
-                            Delevered to: {ite?.to}
+                            Delivered to: {ite?.to}
                             <br /> <br />
                           </span>
                         </>
@@ -243,8 +240,12 @@ const Invoice = () => {
                     );
                   })}
                 <tr>
-                  <td colSpan={2} style={{ textAlign: "center" }}>
-                    <b>TOTAL VAT</b>
+                  <td
+                    colSpan={2}
+                    style={{ textAlign: "center" }}
+                    className="total-label"
+                  >
+                    <b>Total Vat</b>
                   </td>
                   <td>
                     <b>£{vattotal}</b>
