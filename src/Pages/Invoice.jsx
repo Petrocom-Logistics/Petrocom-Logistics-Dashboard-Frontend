@@ -177,7 +177,9 @@ const Invoice = () => {
             <div className="invoice-to">
               <div>
                 <p>Invoice To:</p>
-                <p>{data?.job?.client?.address}</p>
+                <p>
+                  {data?.job?.client?.company_name} {data?.job?.client?.address}
+                </p>
               </div>
             </div>
             <div className="invoice-meta">
