@@ -77,7 +77,7 @@ const Invoice = () => {
     const updatedData = data.data.filter((_, i) => i !== index);
     setData({ ...data, data: updatedData });
   };
-
+  console.log(data);
   // Handle Form Submission (Can replace this with API call)
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,6 +93,7 @@ const Invoice = () => {
           data: data?.data,
           job_cost: data?.job_cost,
           job_total: data?.job_total,
+          po: data?.po,
         },
         {
           headers: {
@@ -183,6 +184,11 @@ const Invoice = () => {
               </div>
             </div>
             <div className="invoice-meta">
+              {data?.po == null || data?.po == "" ? (
+                " "
+              ) : (
+                <p>PURCHASE ORDER: {data?.po}</p>
+              )}
               <p>INVOICE NO: {data?.id}</p>
               <p>INVOICE DATE: {data?.inv_date}</p>
             </div>
@@ -333,9 +339,18 @@ const Invoice = () => {
                   <label>VAT:</label>
                   <input
                     type="text"
-                    style={{ padding: "10px " }}
+                    style={{ padding: "10px ", width: "100px" }}
                     value={data?.vat || ""}
                     onChange={(e) => setData({ ...data, vat: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label>PO:</label>
+                  <input
+                    type="text"
+                    style={{ padding: "10px ", width: "100px" }}
+                    value={data?.po || ""}
+                    onChange={(e) => setData({ ...data, po: e.target.value })}
                   />
                 </div>
               </div>

@@ -29,13 +29,13 @@ function JobList(props) {
     job_cost: "",
     job_total: "",
     vat: "20",
+    po: "",
     data: [{ item: "", unit_cost: "", total: "" }],
   });
   const [jobid, setjobid] = useState("");
   const [jobbid, setJobbid] = useState("");
   const handleOpenModal = (job) => {
     setjobid(job?.id);
-    console.log(job);
     setJobbid(job?.job_id);
     setOpenModal(true);
   };
@@ -54,6 +54,7 @@ function JobList(props) {
       job_cost: "",
       vat: "20",
       job_total: "",
+      po: "",
       data: [{ item: "", unit_cost: "", total: "" }],
     });
   };
@@ -87,6 +88,7 @@ function JobList(props) {
           inv_no: invoiceData?.inv_no,
           job_id: invoiceData?.job_id,
           vat: invoiceData?.vat,
+          po: invoiceData?.po,
           data: invoiceData?.data,
           job_cost: invoiceData?.job_cost,
           job_total: invoiceData?.job_total,
@@ -327,7 +329,7 @@ function JobList(props) {
                   <label>VAT:</label>
 
                   <input
-                    style={{ padding: "10px " }}
+                    style={{ padding: "10px ", width: "100px" }}
                     type="text"
                     className=""
                     value={invoiceData.vat}
@@ -338,6 +340,22 @@ function JobList(props) {
                       })
                     }
                     required
+                  />
+                </div>
+                <div>
+                  <label>PO:</label>
+
+                  <input
+                    style={{ padding: "10px ", width: "100px" }}
+                    type="text"
+                    className=""
+                    value={invoiceData.po}
+                    onChange={(e) =>
+                      setInvoiceData({
+                        ...invoiceData,
+                        po: e.target.value,
+                      })
+                    }
                   />
                 </div>
               </div>
