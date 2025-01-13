@@ -28,9 +28,10 @@ function JobList(props) {
     job_id: "",
     job_cost: "",
     job_total: "",
+    job_hs: "",
     vat: "20",
     po: "",
-    data: [{ item: "", unit_cost: "", total: "" }],
+    data: [{ item: "", unit_cost: "", total: "", hs: "" }],
   });
   const [jobid, setjobid] = useState("");
   const [jobbid, setJobbid] = useState("");
@@ -54,8 +55,9 @@ function JobList(props) {
       job_cost: "",
       vat: "20",
       job_total: "",
+      job_hs: "",
       po: "",
-      data: [{ item: "", unit_cost: "", total: "" }],
+      data: [{ item: "", unit_cost: "", total: "", hs: "" }],
     });
   };
 
@@ -69,13 +71,14 @@ function JobList(props) {
   const handleAddItem = () => {
     setInvoiceData((prev) => ({
       ...prev,
-      data: [...prev.data, { item: "", unit_cost: "", total: "" }],
+      data: [...prev.data, { item: "", unit_cost: "", total: "", hs: "" }],
     }));
   };
   const handleRemoveItem = (index) => {
     const updatedData = invoiceData.data.filter((_, i) => i !== index);
     setInvoiceData({ ...invoiceData, data: updatedData });
   };
+  console.log(invoiceData);
   const handleGenerateInvoice = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -91,6 +94,7 @@ function JobList(props) {
           po: invoiceData?.po,
           data: invoiceData?.data,
           job_cost: invoiceData?.job_cost,
+          job_hs: invoiceData?.job_hs,
           job_total: invoiceData?.job_total,
         },
         {
@@ -140,14 +144,15 @@ function JobList(props) {
             <th>Location</th>
             <th>Multidrop</th>
             <th>POD</th>
-            <th>Invoice</th>
+            {localStorage.getItem("type") != "2" ? <th>Invoice</th> : <th></th>}
             {localStorage.getItem("type") == "1" ? (
               <th>Generate In.</th>
             ) : (
               <th></th>
             )}
             <th>Date</th>
-            <th> Status</th>
+            {localStorage.getItem("type") != "2" ? <th> Status</th> : <th></th>}
+
             <th>Job Status</th>
             <th>Vehicle</th>
             <th>View </th>
@@ -207,43 +212,52 @@ function JobList(props) {
                               </Tooltip>
                             )}
                           </td>
-                          <td>
-                            {item?.invoice_id == 0 && item?.invoice == null ? (
-                              <Tooltip title="Unable to Download" arrow>
-                                <img
-                                  src="/Images/download-icon.svg"
-                                  className="download-icon"
-                                  alt=""
-                                />
-                              </Tooltip>
-                            ) : (
-                              <Tooltip title="Download Invoice" arrow>
-                                {item?.invoice != null ? (
-                                  <Link
-                                    to={
-                                      "https://dashboard-backend.petrocomlogistics.co.uk" +
-                                      item?.invoice
-                                    }
-                                  >
-                                    {" "}
-                                    <img
-                                      src="/Images/download-icon.svg"
-                                      className="download-icon"
-                                      alt=""
-                                    />
-                                  </Link>
-                                ) : (
-                                  <NavLink to={"/invoice/" + item?.invoice_id}>
-                                    <img
-                                      src="/Images/download-icon.svg"
-                                      className="download-icon"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                )}
-                              </Tooltip>
-                            )}
-                          </td>
+                          {localStorage.getItem("type") != "2" ? (
+                            <td>
+                              {item?.invoice_id == 0 &&
+                              item?.invoice == null ? (
+                                <Tooltip title="Unable to Download" arrow>
+                                  <img
+                                    src="/Images/download-icon.svg"
+                                    className="download-icon"
+                                    alt=""
+                                  />
+                                </Tooltip>
+                              ) : (
+                                <Tooltip title="Download Invoice" arrow>
+                                  {item?.invoice != null ? (
+                                    <Link
+                                      to={
+                                        "https://dashboard-backend.petrocomlogistics.co.uk" +
+                                        item?.invoice
+                                      }
+                                    >
+                                      {" "}
+                                      <img
+                                        src="/Images/download-icon.svg"
+                                        className="download-icon"
+                                        alt=""
+                                      />
+                                    </Link>
+                                  ) : (
+                                    <NavLink
+                                      to={"/invoice/" + item?.invoice_id}
+                                    >
+                                      <img
+                                        src="/Images/download-icon.svg"
+                                        className="download-icon"
+                                        alt=""
+                                      />
+                                    </NavLink>
+                                  )}
+                                </Tooltip>
+                              )}
+                            </td>
+                          ) : (
+                            <>
+                              <td></td>
+                            </>
+                          )}
                           {localStorage.getItem("type") == "1" &&
                           item?.status == "Completed" ? (
                             <td>
@@ -264,9 +278,13 @@ function JobList(props) {
                           ) : (
                             <td></td>
                           )}
-
                           <td>{item?.created_at.slice(0, 10)}</td>
-                          <td>{item?.invoice_status}</td>
+                          {localStorage.getItem("type") != "2" ? (
+                            <td>{item?.invoice_status}</td>
+                          ) : (
+                            <td></td>
+                          )}
+
                           <td>
                             <span className={item?.status}>{item?.status}</span>
                           </td>
@@ -370,6 +388,7 @@ function JobList(props) {
                     <input
                       type="text"
                       className=""
+                      style={{ width: "100px" }}
                       value={invoiceData.job_cost}
                       onChange={(e) =>
                         setInvoiceData({
@@ -386,6 +405,7 @@ function JobList(props) {
                   <div>
                     <input
                       type="text"
+                      style={{ width: "100px" }}
                       value={invoiceData.job_total}
                       onChange={(e) =>
                         setInvoiceData({
@@ -395,6 +415,20 @@ function JobList(props) {
                       }
                       required
                       placeholder="Enter Job Total "
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      style={{ width: "100px" }}
+                      value={invoiceData.job_hs}
+                      onChange={(e) =>
+                        setInvoiceData({
+                          ...invoiceData,
+                          job_hs: e.target.value,
+                        })
+                      }
+                      placeholder="HS Code "
                     />
                   </div>
                 </div>
@@ -429,7 +463,8 @@ function JobList(props) {
                     <div style={{ display: "flex", gap: "10px" }}>
                       <input
                         type="text"
-                        placeholder="Enter item name"
+                        style={{ width: "100px" }}
+                        placeholder="Enter item "
                         value={item.item}
                         onChange={(e) =>
                           handleItemChange(index, "item", e.target.value)
@@ -437,8 +472,9 @@ function JobList(props) {
                       />
                       {/* Unit Cost */}
                       <input
-                        type="number"
+                        type="text"
                         placeholder=" Unit cost"
+                        style={{ width: "50px" }}
                         value={item.unit_cost}
                         onChange={(e) =>
                           handleItemChange(index, "unit_cost", e.target.value)
@@ -447,11 +483,22 @@ function JobList(props) {
 
                       {/* Total */}
                       <input
-                        type="number"
+                        type="text"
                         placeholder="Total"
+                        style={{ width: "50px" }}
                         value={item.total}
                         onChange={(e) =>
                           handleItemChange(index, "total", e.target.value)
+                        }
+                      />
+                      <input
+                        type="text"
+                        style={{ width: "60px" }}
+                        maxLength={6}
+                        placeholder="HS Code"
+                        value={item.hs}
+                        onChange={(e) =>
+                          handleItemChange(index, "hs", e.target.value)
                         }
                       />
                     </div>

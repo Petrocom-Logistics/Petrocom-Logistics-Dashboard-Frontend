@@ -158,443 +158,448 @@ console.log(invoice)
 	};
 
 	return (
-		<>
-			{loading ? <Loader /> : ""}
-			<div className="PageContainer">
-				<div className="Page-left">
-					<LeftBar />
-				</div>
-				<div className="page-right">
-					<div id="Job-details">
-						<form onSubmit={submitHandler}>
-							<div className="details">
-								<h3>Job Details</h3>
-								<div className="row">
-									<div className="box">
-										<label htmlFor="job_id">Job ID</label>
-										<span className="input-box">
-											<input
-												type="text"
-												name="job_id"
-												id="job_id"
-												value={jobid}
-												placeholder=""
-												disabled={disable}
-											/>
-										</span>
-									</div>
-									<div className="box">
-										<label htmlFor="date">Date</label>
-										<span className="input-box">
-											{showDatePicker ? (
-												<input
-													type="date"
-													name="date"
-													value={date}
-													onChange={(e) => {
-														setDate(e.target.value);
-													}}
-													onBlur={hideDatePickerHandler}
-													style={{ display: "block" }}
-													disabled={disable}
-													required
-												/>
-											) : (
-												<input
-													type="text"
-													name="date"
-													onChange={(e) => {
-														setDate(e.target.value);
-													}}
-													value={date}
-													onFocus={showDatePickerHandler}
-													placeholder="dd/mm/yyyy"
-													disabled={disable}
-													required
-												/>
-											)}
-										</span>
-									</div>
-									<div className="box">
-										<label htmlFor="multidrop">Multi Drop</label>
-										<span className="input-box">
-											<select
-												name="multidrop"
-												id="multidrop"
-												onChange={multidropHandler}
-												disabled={disable}
-											>
-												<option value={multidropValue}>
-													{multidropValue == 1 ? "Yes" : "No"}
-												</option>
-												<option value="1">Yes</option>
-												<option value="0">No</option>
-											</select>
-										</span>
-									</div>
-								</div>
-								<div className="row">
-									<div className="box">
-										<div className="add-location">
-											<span>Location</span>
-											{localStorage.getItem("type") !== "3" ? (
-												<>
-													{multidropValue == "1" ? (
-														<BsPlusCircleFill
-															className="add-location-icon"
-															onClick={addLocationButton}
-														/>
-													) : (
-														<></>
-													)}
-												</>
-											) : (
-												<></>
-											)}
-										</div>
+    <>
+      {loading ? <Loader /> : ""}
+      <div className="PageContainer">
+        <div className="Page-left">
+          <LeftBar />
+        </div>
+        <div className="page-right">
+          <div id="Job-details">
+            <form onSubmit={submitHandler}>
+              <div className="details">
+                <h3>Job Details</h3>
+                <div className="row">
+                  <div className="box">
+                    <label htmlFor="job_id">Job ID</label>
+                    <span className="input-box">
+                      <input
+                        type="text"
+                        name="job_id"
+                        id="job_id"
+                        value={jobid}
+                        placeholder=""
+                        disabled={disable}
+                      />
+                    </span>
+                  </div>
+                  <div className="box">
+                    <label htmlFor="date">Date</label>
+                    <span className="input-box">
+                      {showDatePicker ? (
+                        <input
+                          type="date"
+                          name="date"
+                          value={date}
+                          onChange={(e) => {
+                            setDate(e.target.value);
+                          }}
+                          onBlur={hideDatePickerHandler}
+                          style={{ display: "block" }}
+                          disabled={disable}
+                          required
+                        />
+                      ) : (
+                        <input
+                          type="text"
+                          name="date"
+                          onChange={(e) => {
+                            setDate(e.target.value);
+                          }}
+                          value={date}
+                          onFocus={showDatePickerHandler}
+                          placeholder="dd/mm/yyyy"
+                          disabled={disable}
+                          required
+                        />
+                      )}
+                    </span>
+                  </div>
+                  <div className="box">
+                    <label htmlFor="multidrop">Multi Drop</label>
+                    <span className="input-box">
+                      <select
+                        name="multidrop"
+                        id="multidrop"
+                        onChange={multidropHandler}
+                        disabled={disable}
+                      >
+                        <option value={multidropValue}>
+                          {multidropValue == 1 ? "Yes" : "No"}
+                        </option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                      </select>
+                    </span>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="box">
+                    <div className="add-location">
+                      <span>Location</span>
+                      {localStorage.getItem("type") !== "3" ? (
+                        <>
+                          {multidropValue == "1" ? (
+                            <BsPlusCircleFill
+                              className="add-location-icon"
+                              onClick={addLocationButton}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
 
-										{inputList.map((x, i) => {
-											return (
-												<>
-													<div
-														className="location-box"
-														id="locationbox"
-														style={{ gap: "20px" }}
-													>
-														<label htmlFor="from">From</label>
-														<span className="input-box">
-															<input
-																type="text"
-																name="from"
-																placeholder=""
-																value={x.from}
-																onChange={(e) => {
-																	inputHandle(e, i);
-																}}
-																disabled={disable}
-															/>
-														</span>
-														<label htmlFor="from">
-															<span>
-																<img
-																	src="/Images/right-arrow.svg"
-																	className="location-arrow"
-																	alt=""
-																/>
-															</span>
-														</label>
-														<span className="input-box">
-															<input
-																type="text"
-																name="to"
-																placeholder=""
-																value={x.to}
-																onChange={(e) => {
-																	inputHandle(e, i);
-																}}
-																disabled={disable}
-															/>
-														</span>
+                    {inputList.map((x, i) => {
+                      return (
+                        <>
+                          <div
+                            className="location-box"
+                            id="locationbox"
+                            style={{ gap: "20px" }}
+                          >
+                            <label htmlFor="from">From</label>
+                            <span className="input-box">
+                              <input
+                                type="text"
+                                name="from"
+                                placeholder=""
+                                value={x.from}
+                                onChange={(e) => {
+                                  inputHandle(e, i);
+                                }}
+                                disabled={disable}
+                              />
+                            </span>
+                            <label htmlFor="from">
+                              <span>
+                                <img
+                                  src="/Images/right-arrow.svg"
+                                  className="location-arrow"
+                                  alt=""
+                                />
+                              </span>
+                            </label>
+                            <span className="input-box">
+                              <input
+                                type="text"
+                                name="to"
+                                placeholder=""
+                                value={x.to}
+                                onChange={(e) => {
+                                  inputHandle(e, i);
+                                }}
+                                disabled={disable}
+                              />
+                            </span>
 
-														{localStorage.getItem("type") !== "3" ? (
-															<>
-																{inputList.length !== 1 && (
-																	<span
-																		className="close-icon"
-																		onClick={() => removeLocationBox(i)}
-																	>
-																		<MdCancel color="#D60C0C" />
-																	</span>
-																)}
-															</>
-														) : (
-															<></>
-														)}
-													</div>
-												</>
-											);
-										})}
-									</div>
-									<div className="box">
-										<label htmlFor="vehicle">Vehicle</label>
-										<div className="input-box">
-											<input
-												type="text"
-												name="vehicle"
-												id="vehicle"
-												value={vehicle}
-												onChange={(e) => {
-													setvehicle(e.target.value);
-												}}
-												disabled={disable}
-												placeholder=""
-											/>
-										</div>
-									</div>
-								</div>
-								<div className="row" id="clonelocationbox"></div>
-							</div>
+                            {localStorage.getItem("type") !== "3" ? (
+                              <>
+                                {inputList.length !== 1 && (
+                                  <span
+                                    className="close-icon"
+                                    onClick={() => removeLocationBox(i)}
+                                  >
+                                    <MdCancel color="#D60C0C" />
+                                  </span>
+                                )}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
+                  <div className="box">
+                    <label htmlFor="vehicle">Vehicle</label>
+                    <div className="input-box">
+                      <input
+                        type="text"
+                        name="vehicle"
+                        id="vehicle"
+                        value={vehicle}
+                        onChange={(e) => {
+                          setvehicle(e.target.value);
+                        }}
+                        disabled={disable}
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="row" id="clonelocationbox"></div>
+              </div>
 
-							{/* Job Details Status  */}
-							<div className="details">
-								<h3>Job Status</h3>
-								<div className="row">
-									<div className="box">
-										<label htmlFor="status">Status</label>
-										<div className="input-box">
-											<select id="status" name="status" disabled={disable}>
-												{/* {data?.status === "Completed"} */}
-												<option value={data?.status}>{data?.status}</option>
-												<option value="Completed">Completed</option>
-												<option value="In-Progress">In-Progress</option>
-												<option value="Cancelled">Cancelled</option>
-												<option value="Scheduled">Scheduled</option>
-												{/* <option value="completed">Completed</option> */}
-											</select>
-										</div>
-									</div>
-									<div className="box">
-										<label htmlFor="pod">POD</label>
-										<div className="pod">
-											{localStorage.getItem("type") !== "3" ? (
-												<div className="input-box" onClick={handlePodFileClick}>
-													<BsImageFill size={"25px"} color="#666666" />
-													<input
-														type="file"
-														id="pod"
-														name="pod"
-														onChange={podHandler}
-														ref={podRef}
-														disabled={disable}
-														style={{ display: "none" }}
-													/>
-													<p>Upload a files</p>
-												</div>
-											) : (
-												<></>
-											)}
+              {/* Job Details Status  */}
+              <div className="details">
+                <h3>Job Status</h3>
+                <div className="row">
+                  <div className="box">
+                    <label htmlFor="status">Status</label>
+                    <div className="input-box">
+                      <select id="status" name="status" disabled={disable}>
+                        {/* {data?.status === "Completed"} */}
+                        <option value={data?.status}>{data?.status}</option>
+                        <option value="Completed">Completed</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Scheduled">Scheduled</option>
+                        {/* <option value="completed">Completed</option> */}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="box">
+                    <label htmlFor="pod">POD</label>
+                    <div className="pod">
+                      {localStorage.getItem("type") !== "3" ? (
+                        <div className="input-box" onClick={handlePodFileClick}>
+                          <BsImageFill size={"25px"} color="#666666" />
+                          <input
+                            type="file"
+                            id="pod"
+                            name="pod"
+                            onChange={podHandler}
+                            ref={podRef}
+                            disabled={disable}
+                            style={{ display: "none" }}
+                          />
+                          <p>Upload a files</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
 
-											{pod === undefined || pod === null ? (
-												<div className="input-box img-prev">
-													<BsImageFill size={"25px"} color="#666666" />
-												</div>
-											) : (
-												<div className="input-box img-prev">
-													<BsImageFill size={"25px"} color="#666666" />
+                      {pod === undefined || pod === null ? (
+                        <div className="input-box img-prev">
+                          <BsImageFill size={"25px"} color="#666666" />
+                        </div>
+                      ) : (
+                        <div className="input-box img-prev">
+                          <BsImageFill size={"25px"} color="#666666" />
 
-													{pod === null ? (
-														<></>
-													) : pod.name ? (
-														pod.name
-													) : (
-														<Link
-															to={
-																"https://dashboard-backend.petrocomlogistics.co.uk" +
-																pod
-															}
-														>
-															Download
-														</Link>
-													)}
-													{disable ? (
-														<> </>
-													) : (
-														<MdCancel
-															color="#D60C0C"
-															id="closeButton"
-															onClick={() => {
-																setPod();
-															}}
-														/>
-													)}
-												</div>
-											)}
-										</div>
-									</div>
-								</div>
-								<div className="row">
-									<div className="box">
-										<label htmlFor="invoice_status">Invoice Status</label>
-										<div className="input-box">
-											<select
-												id="invoice_status"
-												name="invoicestatus"
-												disabled={disable}
-											>
-												{data?.invoice_status === "paid" ? (
-													<>
-														<option value="paid">Paid</option>
-														<option value="due">Due</option>
-													</>
-												) : (
-													<>
-														<option value="due">Due</option>
-														<option value="paid">Paid</option>
-													</>
-												)}
-											</select>
-										</div>
-									</div>
-									<div className="box">
-										<label htmlFor="invoice">Invoice</label>
-										<div className="pod">
-											{localStorage.getItem("type") !== "3" ? (
-												<div
-													className="input-box"
-													onClick={handleInvoiceFileClick}
-												>
-													<BsImageFill size={"25px"} color="#666666" />
-													<input
-														type="file"
-														id="invoice"
-														name="invoice"
-														ref={invoiceRef}
-														style={{ display: "none" }}
-														onChange={invoiceHandler}
-														disabled={disable}
-													/>
-													<p>Upload a files</p>
-												</div>
-											) : (
-												<></>
-											)}
+                          {pod === null ? (
+                            <></>
+                          ) : pod.name ? (
+                            pod.name
+                          ) : (
+                            <Link
+                              to={
+                                "https://dashboard-backend.petrocomlogistics.co.uk" +
+                                pod
+                              }
+                            >
+                              Download
+                            </Link>
+                          )}
+                          {disable ? (
+                            <> </>
+                          ) : (
+                            <MdCancel
+                              color="#D60C0C"
+                              id="closeButton"
+                              onClick={() => {
+                                setPod();
+                              }}
+                            />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                {localStorage.getItem("type") != "2" ? (
+                  <div className="row">
+                    <div className="box">
+                      <label htmlFor="invoice_status">Invoice Status</label>
+                      <div className="input-box">
+                        <select
+                          id="invoice_status"
+                          name="invoicestatus"
+                          disabled={disable}
+                        >
+                          {data?.invoice_status === "paid" ? (
+                            <>
+                              <option value="paid">Paid</option>
+                              <option value="due">Due</option>
+                            </>
+                          ) : (
+                            <>
+                              <option value="due">Due</option>
+                              <option value="paid">Paid</option>
+                            </>
+                          )}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="box">
+                      <label htmlFor="invoice">Invoice</label>
+                      <div className="pod">
+                        {localStorage.getItem("type") !== "3" ? (
+                          <div
+                            className="input-box"
+                            onClick={handleInvoiceFileClick}
+                          >
+                            <BsImageFill size={"25px"} color="#666666" />
+                            <input
+                              type="file"
+                              id="invoice"
+                              name="invoice"
+                              ref={invoiceRef}
+                              style={{ display: "none" }}
+                              onChange={invoiceHandler}
+                              disabled={disable}
+                            />
+                            <p>Upload a files</p>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
 
-											{invoice === undefined || invoice === null ? (
-												<div className="input-box img-prev">
-													<BsImageFill size={"25px"} color="#666666" />
-												</div>
-											) : (
-												<div className="input-box img-prev">
-													<BsImageFill size={"25px"} color="#666666" />
+                        {invoice === undefined || invoice === null ? (
+                          <div className="input-box img-prev">
+                            <BsImageFill size={"25px"} color="#666666" />
+                          </div>
+                        ) : (
+                          <div className="input-box img-prev">
+                            <BsImageFill size={"25px"} color="#666666" />
 
-													{invoice === null ? (
-														<></>
-													) : invoice.name ? (
-														invoice.name
-													) : (
-														<Link
-															to={
-																"https://dashboard-backend.petrocomlogistics.co.uk" +
-																invoice
-															}
-														>
-															Download
-														</Link>
-													)}
-													{disable ? (
-														<> </>
-													) : (
-														<MdCancel
-															color="#D60C0C"
-															id="closeButton"
-															onClick={() => {
-																setInvoice(null);
-															}}
-														/>
-													)}
-												</div>
-											)}
-										</div>
-									</div>
-								</div>
-								<div className="row" style={{ alignItems: "flex-start" }}>
-									<div className="box">
-										<label htmlFor="eta">ETA</label>
-										<div className="input-box">
-											<input
-												type="time"
-												// onFocus={(e) => (e.target.type = "time")}
-												// onBlur={(e) => (e.target.type = "text")}
-												name="eta"
-												id="eta"
-												value={eta}
-												disabled={disable}
-												onChange={(e) => {
-													setEta(e.target.value);
-												}}
-												placeholder="hr-min"
-											/>
-										</div>
-									</div>
-									<div className="box">
-										<label htmlFor="update">Update</label>
-										<div className="update">
-											{localStorage.getItem("type") !== "3" ? (
-												<div
-													className="input-box"
-													style={{ alignItems: "flex-end" }}
-												>
-													<textarea
-														name="update"
-														id="update"
-														rows={"3"}
-														placeholder="Text a Message"
-														disabled={disable}
-														value={messageText}
-														onChange={(e) => {
-															setMessageText(e.target.value);
-														}}
-													></textarea>
-													{disable ? (
-														<> </>
-													) : (
-														<FaArrowUpLong
-															className="update-icon"
-															onClick={() => {
-																handleUpdateMessge();
-															}}
-														/>
-													)}
-												</div>
-											) : (
-												""
-											)}
+                            {invoice === null ? (
+                              <></>
+                            ) : invoice.name ? (
+                              invoice.name
+                            ) : (
+                              <Link
+                                to={
+                                  "https://dashboard-backend.petrocomlogistics.co.uk" +
+                                  invoice
+                                }
+                              >
+                                Download
+                              </Link>
+                            )}
+                            {disable ? (
+                              <> </>
+                            ) : (
+                              <MdCancel
+                                color="#D60C0C"
+                                id="closeButton"
+                                onClick={() => {
+                                  setInvoice(null);
+                                }}
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
 
-											{update?.length === 0 ? (
-												""
-											) : (
-												<>
-													<div
-														className="input-box"
-														style={{ alignItems: "flex-end" }}
-													>
-														<p className="update-p">
-															{update[update?.length - 1]}
-														</p>
-														{localStorage.getItem("type") !== "3" ? (
-															<span>
-																<MdCancel
-																	color="#D60C0C"
-																	onClick={() => {
-																		deleteUpdateMessage();
-																	}}
-																/>
-															</span>
-														) : (
-															""
-														)}
-													</div>
-												</>
-											)}
-										</div>
-									</div>
-								</div>
-							</div>
-							{localStorage.getItem("type") !== "3" ? (
-								<div className="update-btn">
-									<button className="send-load " disabled={disable}>
-										Update
-									</button>
-								</div>
-							) : (
-								""
-							)}
-						</form>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+                <div className="row" style={{ alignItems: "flex-start" }}>
+                  <div className="box">
+                    <label htmlFor="eta">ETA</label>
+                    <div className="input-box">
+                      <input
+                        type="time"
+                        // onFocus={(e) => (e.target.type = "time")}
+                        // onBlur={(e) => (e.target.type = "text")}
+                        name="eta"
+                        id="eta"
+                        value={eta}
+                        disabled={disable}
+                        onChange={(e) => {
+                          setEta(e.target.value);
+                        }}
+                        placeholder="hr-min"
+                      />
+                    </div>
+                  </div>
+                  <div className="box">
+                    <label htmlFor="update">Update</label>
+                    <div className="update">
+                      {localStorage.getItem("type") !== "3" ? (
+                        <div
+                          className="input-box"
+                          style={{ alignItems: "flex-end" }}
+                        >
+                          <textarea
+                            name="update"
+                            id="update"
+                            rows={"3"}
+                            placeholder="Text a Message"
+                            disabled={disable}
+                            value={messageText}
+                            onChange={(e) => {
+                              setMessageText(e.target.value);
+                            }}
+                          ></textarea>
+                          {disable ? (
+                            <> </>
+                          ) : (
+                            <FaArrowUpLong
+                              className="update-icon"
+                              onClick={() => {
+                                handleUpdateMessge();
+                              }}
+                            />
+                          )}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+
+                      {update?.length === 0 ? (
+                        ""
+                      ) : (
+                        <>
+                          <div
+                            className="input-box"
+                            style={{ alignItems: "flex-end" }}
+                          >
+                            <p className="update-p">
+                              {update[update?.length - 1]}
+                            </p>
+                            {localStorage.getItem("type") !== "3" ? (
+                              <span>
+                                <MdCancel
+                                  color="#D60C0C"
+                                  onClick={() => {
+                                    deleteUpdateMessage();
+                                  }}
+                                />
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {localStorage.getItem("type") !== "3" ? (
+                <div className="update-btn">
+                  <button className="send-load " disabled={disable}>
+                    Update
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default JobDetailsById;

@@ -68,7 +68,7 @@ const Invoice = () => {
 
   // Handle Adding a New Item
   const handleAddItem = () => {
-    const newItem = { item: "", unit_cost: "", total: "" };
+    const newItem = { item: "", unit_cost: "", total: "", hs: "" };
     setData((prev) => ({ ...prev, data: [...prev.data, newItem] }));
   };
 
@@ -92,6 +92,7 @@ const Invoice = () => {
           vat: data?.vat,
           data: data?.data,
           job_cost: data?.job_cost,
+          job_hs: data?.job_hs,
           job_total: data?.job_total,
           po: data?.po,
         },
@@ -200,6 +201,10 @@ const Invoice = () => {
                 <tr>
                   <th>Sr No.</th>
                   <th>Description</th>
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
+                    <th>HS Code</th>
+                  )}
+
                   <th>Unit Cost</th>
                   <th>Total</th>
                 </tr>
@@ -231,6 +236,9 @@ const Invoice = () => {
                     Delivered on :{" "}
                     {new Date(data?.created_at).toLocaleDateString()}
                   </td>
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
+                    <td>{data?.job_hs}</td>
+                  )}
                   <td>£{data?.job_cost}</td>
                   <td>£{data?.job_total}</td>
                 </tr>
@@ -241,6 +249,10 @@ const Invoice = () => {
                         <tr>
                           <td>{index + 2}</td>
                           <td>{item?.item}</td>
+                          {(data?.job_hs ||
+                            data?.data?.some((item) => item?.hs)) && (
+                            <td>{item?.hs}</td>
+                          )}
                           <td>£{item?.unit_cost}</td>
                           <td>£{item?.total}</td>
                         </tr>
@@ -255,6 +267,10 @@ const Invoice = () => {
                   >
                     <b>Total Vat</b>
                   </td>
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
+                    <td></td>
+                  )}
+
                   <td>
                     <b>£{vattotal}</b>
                   </td>
@@ -270,6 +286,9 @@ const Invoice = () => {
                   >
                     <b>Total Amount</b>
                   </td>
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
+                    <td></td>
+                  )}
                   <td colSpan="2" style={{ textAlign: "center" }}>
                     <b>£{total}</b>
                   </td>
@@ -362,6 +381,7 @@ const Invoice = () => {
                   <div>
                     <input
                       type="text"
+                      style={{ width: "100px" }}
                       value={data?.job_cost || ""}
                       onChange={(e) =>
                         setData({ ...data, job_cost: e.target.value })
@@ -371,9 +391,20 @@ const Invoice = () => {
                   <div>
                     <input
                       type="text"
+                      style={{ width: "100px" }}
                       value={data?.job_total || ""}
                       onChange={(e) =>
                         setData({ ...data, job_total: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      style={{ width: "100px" }}
+                      value={data?.job_hs || ""}
+                      onChange={(e) =>
+                        setData({ ...data, job_hs: e.target.value })
                       }
                     />
                   </div>
@@ -411,27 +442,43 @@ const Invoice = () => {
                     <div style={{ display: "flex", gap: "10px" }}>
                       <input
                         type="text"
-                        value={item?.item || ""}
+                        style={{ width: "100px" }}
+                        placeholder="Enter item "
+                        value={item.item}
                         onChange={(e) =>
                           handleItemChange(index, "item", e.target.value)
                         }
-                        placeholder="Item name"
                       />
+                      {/* Unit Cost */}
                       <input
-                        type="number"
-                        value={item?.unit_cost || ""}
+                        type="text"
+                        placeholder=" Unit cost"
+                        style={{ width: "50px" }}
+                        value={item.unit_cost}
                         onChange={(e) =>
                           handleItemChange(index, "unit_cost", e.target.value)
                         }
-                        placeholder="Unit cost"
                       />
+
+                      {/* Total */}
                       <input
-                        type="number"
-                        value={item?.total || ""}
+                        type="text"
+                        placeholder="Total"
+                        style={{ width: "50px" }}
+                        value={item.total}
                         onChange={(e) =>
                           handleItemChange(index, "total", e.target.value)
                         }
-                        placeholder="Total"
+                      />
+                      <input
+                        type="text"
+                        style={{ width: "60px" }}
+                        maxLength={6}
+                        placeholder="HS Code"
+                        value={item.hs}
+                        onChange={(e) =>
+                          handleItemChange(index, "hs", e.target.value)
+                        }
                       />
                     </div>
                   </div>

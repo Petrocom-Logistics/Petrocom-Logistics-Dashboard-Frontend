@@ -106,12 +106,18 @@ function JobHistoryTopBar(props) {
               </li>
               <li onClick={(e) => filterHandler(e)}>Cancelled</li>
               <li onClick={(e) => filterHandler(e)}>Scheduled </li>
-              <li onClick={(e) => filterHandler(e)} style={{}}>
-                paid
-              </li>
-              <li onClick={(e) => filterHandler(e)}>due</li>
-              <li onClick={(e) => filterHandler(e)}>Generated</li>
-              <li onClick={(e) => filterHandler(e)}>Not-Generated</li>
+              {localStorage.getItem("type") != "2" ? (
+                <>
+                  <li onClick={(e) => filterHandler(e)} style={{}}>
+                    paid
+                  </li>
+                  <li onClick={(e) => filterHandler(e)}>due</li>
+                  <li onClick={(e) => filterHandler(e)}>Generated</li>
+                  <li onClick={(e) => filterHandler(e)}>Not-Generated</li>
+                </>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
         </Modal>
