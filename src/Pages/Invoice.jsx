@@ -261,15 +261,17 @@ const Invoice = () => {
                   })}
                 <tr>
                   <td
-                    colSpan={2}
+                    colSpan={
+                      data?.job_hs || data?.data?.some((item) => item?.hs)
+                        ? 3
+                        : 2
+                    }
                     style={{ textAlign: "center" }}
                     className="total-label"
                   >
                     <b>Total Vat</b>
                   </td>
-                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
-                    <td></td>
-                  )}
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && ""}
 
                   <td>
                     <b>£{vattotal}</b>
@@ -280,15 +282,17 @@ const Invoice = () => {
                 </tr>
                 <tr>
                   <td
-                    colSpan="2"
+                    colSpan={
+                      data?.job_hs || data?.data?.some((item) => item?.hs)
+                        ? 3
+                        : 2
+                    }
                     className="total-label"
                     style={{ textAlign: "center" }}
                   >
                     <b>Total Amount</b>
                   </td>
-                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && (
-                    <td></td>
-                  )}
+                  {(data?.job_hs || data?.data?.some((item) => item?.hs)) && ""}
                   <td colSpan="2" style={{ textAlign: "center" }}>
                     <b>£{total}</b>
                   </td>
